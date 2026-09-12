@@ -1,44 +1,39 @@
 import React from 'react';
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-//"CSS"
+import { View, Text, TextInput } from 'react-native';
+import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 import { styles } from './style';
 
 export default function TelaInicialScreen({ navigation }: any) {
-
-//ir para a tela de rotas
-  const handleVerRotas = () => {
-    navigation.navigate('Rotas');
-  };
-
-//ir para a tela de conectar dispositivo
-  const handleConectarDispositivo = () => {
-    navigation.navigate('ConectarDispositivo');
-  };
-
   return (
     <View style={styles.homeContainer}>
 
-      <View style={styles.homeHeader}>
-        <Text style={styles.homeGreeting}>Olá! 👋</Text>
-        <Text style={styles.homeSubtitle}>Bem-vindo(a) de volta ao Medusa</Text>
+      <View style={styles.homeTopBar}>
+        <Text style={styles.homeQuestionText}>Para onde quer ir hoje?</Text>
+        <View style={styles.routesProfileIcon}>
+          <Feather name="user" size={20} color="#FFFFFF" />
+        </View>
       </View>
 
-      <ScrollView style={styles.homeContent}>
+      <View style={styles.homeSearchBar}>
+        <Feather name="search" size={18} color="#888888" />
+        <TextInput
+          style={styles.homeSearchInput}
+          placeholder="Buscar destino"
+          placeholderTextColor="#999999"
+        />
+      </View>
 
-        <TouchableOpacity style={styles.homeCard} onPress={handleVerRotas}>
-          <MaterialCommunityIcons name="map-marker-path" size={28} color="#B00D58" />
-          <Text style={styles.homeCardTitle}>Suas rotas</Text>
-          <Text style={styles.homeCardText}>Veja o histórico e as rotas em andamento</Text>
-        </TouchableOpacity>
+      <View style={styles.homeMapArea}>
+        <MaterialCommunityIcons name="map-marker-radius" size={50} color="#7A8F7E" />
+        <Text style={styles.homeMapPlaceholderText}>Mapa em breve</Text>
+      </View>
 
-        <TouchableOpacity style={styles.homeCard} onPress={handleConectarDispositivo}>
-          <MaterialCommunityIcons name="bluetooth-connect" size={28} color="#B00D58" />
-          <Text style={styles.homeCardTitle}>Dispositivo</Text>
-          <Text style={styles.homeCardText}>Conecte ou gerencie seu dispositivo Medusa</Text>
-        </TouchableOpacity>
-
-      </ScrollView>
+      <View style={styles.routesBottomNav}>
+        <MaterialCommunityIcons name="home" size={24} color="#B00D58" />
+        <MaterialCommunityIcons name="bell" size={24} color="#B00D58" />
+        <MaterialCommunityIcons name="dots-grid" size={24} color="#B00D58" />
+        <MaterialCommunityIcons name="compass-outline" size={24} color="#B00D58" />
+      </View>
 
     </View>
   );
